@@ -1,5 +1,6 @@
 package com.nalin1096.dev.primely;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private Button yesButton;
     private Button noButton;
     private Button nextButton;
+    private Button hintButton;
+    private Button cheatButton;
     private TextView primeText;
     Random random_gen = new Random();
     Integer random_num;
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         nextButton = (Button) findViewById(R.id.nextButton);
         yesButton = (Button) findViewById(R.id.yesButton);
         noButton = (Button) findViewById(R.id.noButton);
+        hintButton = (Button) findViewById(R.id.hintButton);
+        cheatButton = (Button) findViewById(R.id.cheatButton);
 
         primeText = (TextView) findViewById(R.id.textView5);
 
@@ -63,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 int flag = 0;
-                random_num = random_gen.nextInt(1000);
-                for (int i=2;i<Math.sqrt(random_num);i++) {
+                for (int i=2;i<random_num/2;i++) {
                     if (random_num%i==0) {
                         flag++;
                         break;
@@ -88,14 +92,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 int flag = 0;
-                random_num = random_gen.nextInt(1000);
-                for (int i=2;i<Math.sqrt(random_num);i++) {
+                for (int i=2;i<random_num/2;i++) {
                     if (random_num%i==0) {
                         flag++;
                         break;
                     }
                 }
-                if (flag != 1) {
+                if (flag == 0) {
                     Toast.makeText(MainActivity.this, "Wrong Answer!",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -108,7 +111,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Listener for Hint Button
+        hintButton = (Button) findViewById(R.id.hintButton);
+        hintButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                showHint(view);
+            }
+        });
 
+        //Listener for Cheat Button
+        cheatButton = (Button) findViewById(R.id.cheatButton);
+        cheatButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                showCheat(view);
+            }
+        });
+
+
+    }
+
+    public void showHint(View view)
+    {
+        Intent intent = new Intent(this, hint.class);
+        intent.putExtra("hint", random_num);
+        startActivity(intent);
+    }
+
+    public void showCheat(View view)
+    {
+        Intent intent = new Intent(this, cheat.class);
+        intent.putExtra("cheat", random_num);
+        startActivity(intent);
     }
 
     @Override

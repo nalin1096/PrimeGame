@@ -55,4 +55,24 @@
         android:textStyle="normal|bold"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Show Hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:id="@+id/hintButton"
+        android:layout_marginStart="29dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/yesButton" />
+
+    <Button
+        android:text="Show Cheat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cheatButton"
+        android:layout_alignBaseline="@+id/hintButton"
+        android:layout_alignBottom="@+id/hintButton"
+        android:layout_alignEnd="@+id/noButton"
+        android:layout_marginEnd="11dp" />
 </RelativeLayout>
