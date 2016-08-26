@@ -20,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private Button hintButton;
     private Button cheatButton;
     private TextView primeText;
+    private TextView infoText;
     Random random_gen = new Random();
     Integer random_num;
+    String info_text;
 
     private static final String TAG = "Primely";
 
@@ -38,15 +40,22 @@ public class MainActivity extends AppCompatActivity {
         cheatButton = (Button) findViewById(R.id.cheatButton);
 
         primeText = (TextView) findViewById(R.id.textView5);
+        infoText = (TextView) findViewById(R.id.infoText);
+
+        info_text = "";
+        infoText.setText(info_text);
 
         if (savedInstanceState != null)
         {
             random_num = savedInstanceState.getInt ("random_num", random_gen.nextInt(1000));
+            info_text = savedInstanceState.getString ("info_str", "");
             primeText.setText(random_num.toString());
+            infoText.setText(info_text);
         }
         else {
             random_num = random_gen.nextInt(1000);
             primeText.setText(random_num.toString());
+            infoText.setText(info_text);
 
         }
         //Set inital random number to Prime Number text field
@@ -58,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                infoText.setText("");
                 random_num = random_gen.nextInt(1000);
                 primeText.setText(random_num.toString());
             }
@@ -67,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         yesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                infoText.setText("");
                 int flag = 0;
                 for (int i=2;i<random_num/2;i++) {
                     if (random_num%i==0) {
@@ -91,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         noButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                infoText.setText("");
                 int flag = 0;
                 for (int i=2;i<random_num/2;i++) {
                     if (random_num%i==0) {
@@ -134,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHint(View view)
     {
+        info_text = "Hint Used";
+        infoText.setText(info_text);
         Intent intent = new Intent(this, hint.class);
         intent.putExtra("hint", random_num);
         startActivity(intent);
@@ -141,6 +155,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void showCheat(View view)
     {
+        info_text = "Cheat Used";
+        infoText.setText(info_text);
         Intent intent = new Intent(this, cheat.class);
         intent.putExtra("cheat", random_num);
         startActivity(intent);
@@ -151,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "Inside onSaveInstance");
         savedInstanceState.putInt("random_num", random_num);
+        savedInstanceState.putString("info_str", info_text);
 
     }
 

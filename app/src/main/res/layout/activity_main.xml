@@ -57,16 +57,6 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Show Hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
-        android:id="@+id/hintButton"
-        android:layout_marginStart="29dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/yesButton" />
-
-    <Button
         android:text="Show Cheat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,4 +65,23 @@
         android:layout_alignBottom="@+id/hintButton"
         android:layout_alignEnd="@+id/noButton"
         android:layout_marginEnd="11dp" />
+
+    <TextView
+        android:text="Hint Used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/infoText"
+        android:layout_above="@+id/hintButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="9dp" />
+
+    <Button
+        android:text="Show Hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:id="@+id/hintButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/cheatButton"
+        android:layout_marginEnd="10dp" />
 </RelativeLayout>
